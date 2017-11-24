@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Music</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-label>Volume: </ion-label>
+  <ion-item>
+    <ion-range min="0" max="100" [(ngModel)]="volume" (ionChange)="changeVolume(volume)" color="primary">
+      <ion-label range-left>0</ion-label>
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <ion-item>
+    <button ion-button large icon-only (click)="previousSong()">
+      <ion-icon name="arrow-dropleft-circle"></ion-icon>
+    </button>
+    <button ion-button large icon-only (click)="playPause()">
+      <ion-icon name="play"></ion-icon>
+    </button>
+    <button ion-button large icon-only (click)="nextSong()">
+      <ion-icon name="arrow-dropright-circle"></ion-icon>
+    </button>
+  </ion-item>
+
+  <ion-list *ngIf="songs">
+    <ion-item>Songs:</ion-item>
+    <button ion-item *ngFor="let song of getKeys(songs)" (click)="playSong(song)" full>{{song}}</button>
+</ion-list>
+</ion-content>
